@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Valentine 💖</title>
 
-  <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
@@ -78,24 +77,24 @@
     <button id="no" onmouseover="moveNo()">No 💔</button>
   </div>
 
-  <audio id="music" loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
+  <!-- ✅ CUSTOM SONG -->
+  <audio id="music" preload="auto" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     function yesClicked() {
-      document.getElementById("music").play();
+      const music = document.getElementById("music");
+      music.muted = false;
+      music.play().catch(() => {});
 
       document.body.innerHTML = `
         <h1>Manav ❤️ Sumayya</h1>
-
-        <img src="https://uploads.onecompiler.io/44cghrct6/44cgjb68a/couple.jpg" alt="Manav and Sumayya">
-
+        <img src="couple.jpg" alt="Manav and Sumayya">
         <h1>Forever & Always 💕</h1>
       `;
 
       const end = Date.now() + 6000;
-
       (function frame() {
         confetti({
           particleCount: 6,
@@ -117,5 +116,4 @@
   </script>
 
 </body>
-
 </html>
