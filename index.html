@@ -83,10 +83,45 @@
   </audio>
 
   <script>
-    function yesClicked() {
-      const music = document.getElementById("music");
-      music.muted = false;
-      music.play().catch(() => {});
+  function yesClicked() {
+    const music = document.getElementById("music");
+    music.muted = false;
+    music.play();
+
+    // Hide buttons instead of deleting the whole body
+    document.querySelector(".buttons").style.display = "none";
+    document.querySelector("h1").innerText = "Manav ❤️ Sumayya";
+
+    // Add photo + message
+    const content = document.createElement("div");
+    content.innerHTML = `
+      <img src="couple.jpg">
+      <h1>Forever & Always 💕</h1>
+    `;
+    document.body.appendChild(content);
+
+    // Heart confetti
+    const end = Date.now() + 6000;
+    (function frame() {
+      confetti({
+        particleCount: 6,
+        spread: 80,
+        emojis: ["❤️","💖","💕","💘"],
+        emojiSize: 28
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  }
+
+  function moveNo() {
+    const noBtn = document.getElementById("no");
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+</script>
+
 
       document.body.innerHTML = `
         <h1>Manav ❤️ Sumayya</h1>
@@ -117,3 +152,4 @@
 
 </body>
 </html>
+
